@@ -1,0 +1,12 @@
+.header__buttons {
+    align-items: flex-end;
+    margin-right: 20px;    
+    overflow: hidden;
+    margin-left: 10px;
+}
+.btn__home, .btn__gitHub, .btn__remixDocs {
+    margin-right: 10px;
+    border-radius: 5px; 
+    background-color: white;
+    cursor: pointer;
+}

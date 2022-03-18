@@ -1,0 +1,11 @@
+.posts__header {
+    width: 100%;
+    background-color: #867beb9e;
+    padding: 15px 0;
+}
+
+.posts__header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
