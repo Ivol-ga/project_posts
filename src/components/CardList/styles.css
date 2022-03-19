@@ -1,0 +1,25 @@
+.cards {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+	
+}
+
+@media (max-width: 880px) {
+	.cards {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 400px) {
+	.cards {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+.btn__create {
+	margin: 30px 50px;
+    color: inherit;
+    border: 2px ridge var(--main-color);
+    cursor: pointer;
+}

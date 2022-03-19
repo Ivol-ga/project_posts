@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.19.2",
+    "classnames": "^2.3.1",
     "core-js": "^3.21.1",
     "css": "^3.0.0",
     "normalize": "^0.3.1",
