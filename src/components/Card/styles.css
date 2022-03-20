@@ -15,3 +15,12 @@
 .tags {
 	margin: 15px 10px;
 }
+.user a{
+    display: flex;
+	justify-content: center;
+	margin: 10px 10px;
+	font-size: 16px;
+}
+.user p {
+	font-family: 'Akaya Telivigala', cursive;
+}

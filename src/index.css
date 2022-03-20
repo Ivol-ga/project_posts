@@ -21,6 +21,17 @@ body {
     margin: 0 auto;
     padding: 0 16px;
 }
+.cards__container_greetings {
+    font-size: 25px;
+     display: flex;
+    justify-content: center;
+    margin: 10px 10px;
+}
+.cards__container p {
+   font-size: 15px;
+   display: flex;
+   justify-content: center;
+}
 
 img {
     max-width: 100%;

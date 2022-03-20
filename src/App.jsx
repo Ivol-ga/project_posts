@@ -16,8 +16,12 @@ export const App = () => {
         {/* ? */}
       <Breadcrumb/>
           <main className="cards__container">
+            <div className="cards__container_greetings">
+            Welcome to Our Image Board! 
+            </div>
+            <p>We're stoked that you're here. 🥳</p>
               <button className="btn__create" onClick={handleBtnCreate}  
-          >Create</button>
+          >Create post</button>
             <CardsList/>
            
       </main>
