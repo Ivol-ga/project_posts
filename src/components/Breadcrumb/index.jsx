@@ -5,7 +5,8 @@ import { Breadcrumb } from 'antd';
 
 export const Breadcrumb = () => {
     return (
-      <Breadcrumb>
+    <div className="breadCrumb">
+    <Breadcrumb>
       <Breadcrumb.Item>Home</Breadcrumb.Item>
       <Breadcrumb.Item>
         <a href="">Application Center</a>
@@ -16,5 +17,6 @@ export const Breadcrumb = () => {
       <Breadcrumb.Item>An Application</Breadcrumb.Item>
     </Breadcrumb>,
     document.getElementById('container')
+    </div>
     )
 }

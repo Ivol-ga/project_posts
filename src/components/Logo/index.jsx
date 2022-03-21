@@ -5,7 +5,7 @@ import logo from './img/logo.png';
 
 export const Logo = () => {
     return (
-        <a href="/" className="logo">
+        <a href="https://react-learning.ru/posts" className="logo">
            <img src={logo} alt="logo" className="logo__posts"/>
           
         </a>

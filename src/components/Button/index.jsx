@@ -1,15 +1,14 @@
-import React from "react";
+import React from 'react';
+import 'antd/dist/antd.css';
 import './styles.css';
-// import { Button } from 'antd';
+import { Button } from 'antd';
 
-
-
-export const Button = () => {
-    return (
-        <div className="header__buttons">
-          <button className="btn__home"> Home</button>
-          <button className="btn__remixDocs"> RemixDocs</button>
-          <button className="btn__gitHub"> GitHub</button>
-        </div>
-    )
-}
+export const Btn = () => {
+  return <>
+      <div className='header__buttons'>
+        <Button type="primary">Home</Button>
+        <Button>Remix Docs</Button>
+        <Button type="dashed">GitHub</Button>
+      </div>
+  </>
+};

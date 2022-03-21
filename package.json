@@ -9,10 +9,12 @@
     "classnames": "^2.3.1",
     "core-js": "^3.21.1",
     "css": "^3.0.0",
+    "dayjs": "^1.11.0",
     "normalize": "^0.3.1",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
   },
   "scripts": {
     "editorconfig": "editorconfig-checker",
