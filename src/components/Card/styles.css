@@ -7,10 +7,20 @@
 	border-radius: 10px;
     border: 1px ridge var(--main-color);
 	margin: 20px;
-}
+	}
 
 .card:hover {
-	box-shadow: 3px 3px 4px rgba(40, 41, 61, 0.04), 3px 8px 16px rgba(96, 97, 112, 0.16);
+	box-shadow: 0 0 10px rgba(0,0,0,0.5)
+	/* box-shadow: 3px 3px 4px rgba(40, 41, 61, 0.04), 3px 8px 16px rgba(96, 97, 112, 0.16); */
+}
+.card__favorite {
+	/* cursor: pointer;
+	background: url('./img/like.svg');
+	border: none;
+	padding: 0;
+	display: flex;
+	justify-content: end;
+	align-items: flex-end; */
 }
 .tags {
 	margin: 15px 10px;
@@ -23,4 +33,24 @@
 }
 .user p {
 	font-family: 'Akaya Telivigala', cursive;
+}
+.card__picture_like {
+	background: none;
+	border: none;
+	padding: 0;
+	top: 0;
+	float: right;
+}
+.likes__count {
+	float: right;
+	font-size: 14px;
+}
+.card__like-icon {
+	cursor: pointer;
+}
+.card__like-icon_active {
+    fill: red;
+}
+.post__delete {
+	margin-top: auto;
 }

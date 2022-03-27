@@ -1,38 +1,43 @@
 import React from "react";
 import './styles.css';
+import { ReactComponent as Like } from './img/like.svg'
+import 'antd/dist/antd.css';
+import { Button } from 'antd';
 import dayjs from "dayjs";
 import 'dayjs/locale/ru';
 dayjs.locale('ru')
 
-export const Card = ({
-  title,
-  text,
-  image,
-  tags,
-  created_at,
-  updated_at,
-  author: { avatar, name, about, email },
-}) => {
+export const Card = ({onPostLike, currentAuthor, _id, likes, title, text, tags, created_at, updated_at, author: { avatar, name, email }}) => {
   const dataPostCreate = dayjs(created_at).format('dddd, MMMM DD.YYYY');
   const dataPostUpdate = dayjs(updated_at).format('dddd, MMMM DD.YYYY');
+  const liked = likes.some(id => id === currentAuthor._id); 
+  function handleLikeClick() {
+    onPostLike({_id, likes});
+  }
+  const handlePostDelete = () => {
+    onPostDelete({_id});
+  }
   return (
     <div className="card">
-      {/* <a href="#" className="card__link"> */}
-        {/* {title}
-      </a> */}
-      <div className="card__picture">
-        {/* <img src={image} alt="picture" className="member__pic" /> */}
-        <div className="user">
-          <img src={avatar} alt="avatar" className="member__avatar" />
-          <a>{name}</a>
-          <b>{email}</b>
-          <p>{title}</p>
-          <div>{text}</div>
-        </div>
+         <div className="card__picture">
+           <div className="likes__count">{likes.length}
+           <button className="card__picture_like" onClick={handleLikeClick}>
+               <Like className={liked ? "card__like-icon_active" : "card__like-icon"}/>
+                {/* <img src={like} alt="добавить в избранное" className="card__like-icon"/> */}
+           </button>
+           </div>
+            <div className="user">
+              <img src={avatar} alt="avatar" className="member__avatar" />
+               <a>{name}</a>
+               <b>{email}</b>
+               <p>{title}</p>
+               <div>{text}</div>
+            </div>
         <div className="tags">{tags}</div>
         <div className="card__created">Создано: {dataPostCreate}</div>
         <div className="card__updated">Изменено: {dataPostUpdate}</div>
-      </div>
+         </div>
+         <Button type="primary" className="post__delete" onClick={handlePostDelete}>Удалить</Button>
     </div>
   );
 };

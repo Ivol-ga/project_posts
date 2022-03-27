@@ -1,0 +1,34 @@
+.author__info {
+    display: flex;
+    font-size: 18px;
+}
+.author__info_btn {
+    margin-left: 10px;
+    cursor: pointer;
+    padding: 7px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color .3s;
+    color: rgb(120, 183, 241);
+    border: 2px solid rgb(120, 183, 241);
+}
+.author__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: 1px ridge var(--main-color);
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    font-size: 14px;
+    text-align: center;
+}
+.cards__container__description {
+    font-size: 19px;
+}
