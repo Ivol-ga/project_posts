@@ -38,13 +38,17 @@ function handlePostLike({_id, likes}) {
   })
 }
 function handlePostDelete(_id) {
+  // console.log(currentAuthor);
+  let confirmDelete = confirm("Удалить пост?");
+  if (confirmDelete) {
   api.deletePost(_id)
  .then(() => {
   api.getPostList()
   .then((newPostListAfterDelete) => {
     setItems(newPostListAfterDelete);
  });
-});
+}) 
+  }
 }
   return (
     <>
