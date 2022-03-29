@@ -37,22 +37,22 @@ function handlePostLike({_id, likes}) {
         setItems(newPostList);
   })
 }
-// function handlePostDelete({_id}) {
-//   api.deletePost(_id)
-//  .then((delPost) => {
-//        const newPostListAfterDelete = items.map(p => {
-//               return p._id === delPost._id ? delPost : p
-//        })
-//        setItems(newPostListAfterDelete);
-//  })
-// }
+function handlePostDelete(_id) {
+  api.deletePost(_id)
+ .then(() => {
+  api.getPostList()
+  .then((newPostListAfterDelete) => {
+    setItems(newPostListAfterDelete);
+ });
+});
+}
   return (
     <>
       <Header/>
       <BreadComponent/>
       <Main author={currentAuthor}/>
       {/* <Spinner/> */}
-      <CardsList list={items} onPostLike={handlePostLike} currentAuthor={currentAuthor} /*onPostDelete={handlePostDelete}*//>
+      <CardsList list={items} onPostLike={handlePostLike} currentAuthor={currentAuthor} onPostDelete={handlePostDelete}/>
       <Footer />
     </>
   );

@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import 'dayjs/locale/ru';
 dayjs.locale('ru')
 
-export const Card = ({onPostLike, currentAuthor, _id, likes, title, text, tags, created_at, updated_at, author: { avatar, name, email }}) => {
+export const Card = ({onPostLike, onPostDelete, currentAuthor, _id, likes, title, text, tags, created_at, updated_at, author: { avatar, name, email }}) => {
   const dataPostCreate = dayjs(created_at).format('dddd, MMMM DD.YYYY');
   const dataPostUpdate = dayjs(updated_at).format('dddd, MMMM DD.YYYY');
   const liked = likes.some(id => id === currentAuthor._id); 
@@ -15,7 +15,7 @@ export const Card = ({onPostLike, currentAuthor, _id, likes, title, text, tags, 
     onPostLike({_id, likes});
   }
   const handlePostDelete = () => {
-    onPostDelete({_id});
+    onPostDelete(_id);
   }
   return (
     <div className="card">
