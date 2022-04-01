@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useContext} from "react";
 import './styles.css';
 import styled from 'styled-components';
+import { CurrentAuthorContext } from './../../Context/currentAuthorContext';
 
 const Title = styled.p`
   font-size: 20px;
@@ -19,7 +20,8 @@ const BtnBackNext = styled.button`
   border-radius: 3px;
   cursor: pointer;
 `;
-export const Main = ({author:{name, email, about}}) => {
+export const Main = () => {
+  const CurrentAuthor = useContext(CurrentAuthorContext);
    const handleBtnCreate = () => {
     console.log("Есть контакт");
   };
@@ -29,13 +31,14 @@ export const Main = ({author:{name, email, about}}) => {
         Welcome to Our Image Board!
       </div>
       <div className="author__info"> 
-      <div className="author__info_name">{name &&  <span>{name}: {about}</span>}</div> 
-      <div className="author__info_email"> {email && <span>{email}</span>}</div>
+      <div className="author__info_name">{CurrentAuthor.name &&  <span>{CurrentAuthor.name}: {CurrentAuthor.about}</span>}</div> 
+      <div className="author__info_email"> {CurrentAuthor.email && <span>{CurrentAuthor.email}</span>}</div>
       <Title className="cards__container__description">
         Create a post that your friends and family will cherish. Choose our from
         to create an original statement about you and your hobbies!
       </Title>
         <div>
+          {/* onUpdateUser */}
         <button className="author__info_btn">
           Изменить
         </button>
