@@ -8,29 +8,24 @@ import 'dayjs/locale/ru';
 import { useNavigate } from "react-router-dom";
 import { CurrentAuthorContext } from '../../Context/currentAuthorContext';
 dayjs.locale('ru')
-
-export const Post = ({onPostLike, onPostDelete, _id, likes, title, text, tags, created_at, updated_at, author}) => {
+export const Post = ({onPostLike, image, onPostDelete, _id, likes, title, text, tags, created_at, updated_at, author}) => {
   const dataPostCreate = dayjs(created_at).format('dddd, MMMM DD.YYYY');
   const dataPostUpdate = dayjs(updated_at).format('dddd, MMMM DD.YYYY');
-  const liked = likes && likes.some(id => id === CurrentAuthor?._id); 
   const CurrentAuthor = useContext(CurrentAuthorContext);
+  const liked = likes && likes.some(id => id === CurrentAuthor?._id); 
   const navigate = useNavigate();
   function handleLikeClick() {
-      onPostLike({_id, likes});
+           onPostLike({_id, likes});
   }
   function handleBackClick() {
     navigate(-1);
 }
-//   const handlePostDelete = () => {
-//     onPostDelete(_id);
-//   }
   return (
     <div className="postPage">
       <div>
         <a href="#" className="button__back" onClick={handleBackClick}>
           Назад
         </a>
-    
       </div>
       <div className="postPage__card">
       <h2 className="postPage__title">{title}</h2>
@@ -45,18 +40,20 @@ export const Post = ({onPostLike, onPostDelete, _id, likes, title, text, tags, c
             </button>
           </div>
           <div className="user">
-            <img src={author?.avatar} alt="avatar" className="member__avatar" />
-            <img src={author?.image} alt="image" className="member__image" />
-            <b>{author?.name}</b>
+          <img src={image} alt="image" className="member__image" />
+          <div className="member__avatar">
+             <img src={author?.avatar} alt="avatar" className="member__avatar_card" />
+             <span>{author?.name}</span>
+          </div>
+          
+            
             <p>{author?.email}</p>
             <div>{text}</div>
-            
           </div>
           <div className="tags">{tags}</div>
           <div className="card__created">Создано: {dataPostCreate}</div>
           <div className="card__updated">Изменено: {dataPostUpdate}</div>
         </div>
-        {/* <Button type="primary" className="post__delete" onClick={handlePostDelete}>Удалить</Button> */}
       </div>
     </div>
   );

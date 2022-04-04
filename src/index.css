@@ -48,3 +48,6 @@ img {
 .result {
 	font-size: 24px;
 }
+.errorMessage {
+  margin-left: 20px;
+}
