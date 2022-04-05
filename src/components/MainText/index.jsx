@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import './styles.css';
 import styled from 'styled-components';
+import api from "../../utils/Api";
 import { CurrentAuthorContext } from './../../Context/currentAuthorContext';
 
 const Title = styled.p`
@@ -20,11 +21,12 @@ const BtnBackNext = styled.button`
   border-radius: 3px;
   cursor: pointer;
 `;
-export const Main = () => {
+export const Main = ({onUpdateAuthor, handleBtnCreate}) => {
   const CurrentAuthor = useContext(CurrentAuthorContext);
-   const handleBtnCreate = () => {
-    console.log("Есть контакт");
-  };
+  function handleClickAuthorUpdate(e) {
+    e.preventDefault();
+    onUpdateAuthor({name: "Максим", about: "Наставник"})
+  }
   return (
     <main className="cards__container">
       <div className="cards__container_greetings">
@@ -39,7 +41,7 @@ export const Main = () => {
       </Title>
         <div>
           {/* onUpdateUser */}
-        <button className="author__info_btn">
+        <button className="author__info_btn" onClick={handleClickAuthorUpdate}> 
           Изменить
         </button>
         </div>

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { CurrentAuthorContext } from './../../Context/currentAuthorContext';
 dayjs.locale('ru')
 
-export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, created_at, updated_at, author: { avatar, name, email }}) => {
+export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, created_at, updated_at, author}) => {
   const currentAuthor = useContext(CurrentAuthorContext);
     const dataPostCreate = dayjs(created_at).format('dddd, MMMM DD.YYYY');
   const dataPostUpdate = dayjs(updated_at).format('dddd, MMMM DD.YYYY');
@@ -30,11 +30,11 @@ export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, c
            </button>
            </div>
             <Link to={`/post/${_id}`} className="user">
-              <img src={avatar}  className="member__avatar" />
-               <b>{name}</b>
+              <img src={author?.avatar}  className="member__avatar" />
+               <b>{author?.name}</b>
                </Link>
                <div>
-               <b>{email}</b>
+               <b>{author?.email}</b>
                <p>{title}</p>
                <div>{text}</div>
             </div>

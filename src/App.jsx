@@ -10,13 +10,13 @@ import { PageCatalog } from "./pages/CatalogPage/CatalogPage";
 import { PagePost } from "./pages/PostPage/PostPage";
 import { Route, Routes } from "react-router-dom";
 import { CurrentAuthorContext } from './Context/currentAuthorContext';
+import { PostCreate } from "./pages/PostCreate/postCreate";
 
 
 export const App = () => {
   const [items, setItems] = useState([]);
   const [currentAuthor, setCurrentAuthor] = useState({});
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
-console.log(currentAuthor);
    useEffect(() => {
     // api.getPostList()
     // .then(data => console.log(data))
@@ -42,6 +42,15 @@ function handlePostLike({_id, likes}) {
         setItems(newPostList);
   })
 }
+const handleBtnCreate = () => {
+  api.setPostCreate()
+  .then(() => {
+    api.getPostList()
+    .then((newPostListAfterCreate) => {
+       setItems(newPostListAfterCreate)
+    })
+  })
+}
 function handlePostDelete(_id) {
   let confirmDelete = confirm("Удалить пост?");
   if (confirmDelete) {
@@ -49,29 +58,33 @@ function handlePostDelete(_id) {
     api.deletePost(_id).then(() => {
       api.getPostList()
       .then((newPostListAfterDelete) => {
-        return setItems(newPostListAfterDelete)
+         setItems(newPostListAfterDelete)
       })
     })
     .catch(err => console.log(err))
         .finally( () => {
-          setTimeout(() => setIsLoading(false), 200)
+           setIsLoadingPosts(false)
         })
   }
-  if (!currentAuthor.id) {
-    alert("Запрещено удалять чужой пост")
-  }
+ }
+function handleAuthorUpdate (authorUpdate) {
+     api.setUserChange(authorUpdate)
+     .then((newAuthorData) => {setCurrentAuthor(newAuthorData)
+     })
 }
   return (
     <CurrentAuthorContext.Provider value={currentAuthor}>
       <Header/>
       <BreadComponent/>
       <Routes>
-        <Route path="/" element={
-          <PageCatalog
+        <Route path="/" 
+        element={isLoadingPosts ? <Spinner/> : <PageCatalog
           currentAuthor={currentAuthor}
           items={items}
           handlePostLike={handlePostLike}
           handlePostDelete={handlePostDelete}
+          onUpdateAuthor={handleAuthorUpdate}
+          handleBtnCreate={handleBtnCreate}
           />
         }/>
       <Route path="/post/:postID" 
@@ -82,12 +95,11 @@ function handlePostDelete(_id) {
         handlePostLike={handlePostLike}
         handlePostDelete={handlePostDelete}
         />
-      }
-      />
+      } />
+      <Route path="/post" element={<PostCreate/>}/>
       <Route path="*" className="errorMessage" element={<h1>Ошибка 404: страница не найдена</h1>}/>
         </Routes>
-      {isLoadingPosts ? <Spinner/> : <></>}
-      <Footer />
+        <Footer />
     </CurrentAuthorContext.Provider>
   );
 };

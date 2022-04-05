@@ -3,26 +3,11 @@ import { CardsList } from "../../components/CardList";
 import api from "../../utils/Api";
 import { Main } from '../../components/MainText/index';
 // import { message } from "antd";
-
-export const PageCatalog = ({currentAuthor, handlePostLike, items}) => {
+export const PageCatalog = ({currentAuthor, handlePostLike, handlePostDelete, items, handleClickAuthorUpdate, handleBtnCreate}) => {
    
-function handlePostDelete(_id) {
-  // console.log(currentAuthor);
-  let confirmDelete = confirm("Удалить пост?");
-  if (confirmDelete) {
-    api.deletePost(_id).then(() => {
-      api.getPostList().then((newPostListAfterDelete) => {
-        setItems(newPostListAfterDelete);
-      });
-    });
-  }
-  if (!currentAuthor) {
-    alert("Запрещено удалять чужой пост")
-  }
-}
   return (
     <>
-      <Main author={currentAuthor}/>
+      <Main author={currentAuthor} onUpdateAuthor={handleClickAuthorUpdate} handleBtnCreate={handleBtnCreate}/>
       <CardsList list={items} onPostLike={handlePostLike} onPostDelete={handlePostDelete} currentAuthor={currentAuthor} />
     </>
   );

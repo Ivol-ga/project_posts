@@ -7,7 +7,10 @@ import dayjs from "dayjs";
 import 'dayjs/locale/ru';
 import { useNavigate } from "react-router-dom";
 import { CurrentAuthorContext } from '../../Context/currentAuthorContext';
+import Spinner from '../Spinner/index';
+
 dayjs.locale('ru')
+
 export const Post = ({onPostLike, image, onPostDelete, _id, likes, title, text, tags, created_at, updated_at, author}) => {
   const dataPostCreate = dayjs(created_at).format('dddd, MMMM DD.YYYY');
   const dataPostUpdate = dayjs(updated_at).format('dddd, MMMM DD.YYYY');

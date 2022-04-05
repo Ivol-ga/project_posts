@@ -15,7 +15,7 @@ export const PagePost = ({handlePostLike, cards}) => {
     return api.getPostById(postID)
   }, [postID, cards])
 
-  const {dataPost: post, loading, error} = useApi(postParam);
+  const {dataPost: post, isLoadingPost, error} = useApi(postParam);
   
   return (
     <>

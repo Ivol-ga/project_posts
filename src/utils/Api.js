@@ -22,6 +22,28 @@ class Api {
       },
     }).then(onRespPosts)  
   }
+
+  setUserChange(authorData) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+    headers: {
+      authorization: this._token,
+      "Content-type": "application/json"
+    },
+    body: JSON.stringify(authorData)
+  }).then(onRespPosts)  
+}
+setPostCreate() {
+  return fetch(`${this._baseUrl}/posts`, {
+    method: "POST",
+  headers: {
+    authorization: this._token,
+    "Content-type": "application/json"
+  },
+  body: JSON.stringify()
+}).then(onRespPosts)  
+}
+
   changeLikePost(likeId, isLike) {
     return fetch(`${this._baseUrl}/posts/likes/${likeId}`, {
       method: isLike ? "DELETE" : "PUT",
