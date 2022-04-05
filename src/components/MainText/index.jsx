@@ -3,6 +3,7 @@ import './styles.css';
 import styled from 'styled-components';
 import api from "../../utils/Api";
 import { CurrentAuthorContext } from './../../Context/currentAuthorContext';
+import { Link } from 'react-router-dom';
 
 const Title = styled.p`
   font-size: 20px;
@@ -46,9 +47,13 @@ export const Main = ({onUpdateAuthor, handleBtnCreate}) => {
         </button>
         </div>
       </div>
+      <Link to={`/post`} className="create__post">
+  
       <button className="btn__create" onClick={handleBtnCreate}>
         Create post
       </button>
+      </Link>
+
       <div>
         <BtnBackNext as="a" href="https://react-learning.ru/">
           Home

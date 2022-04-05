@@ -8,9 +8,10 @@ import Spinner from "./Spinner";
 import { message } from "antd";
 import { PageCatalog } from "./pages/CatalogPage/CatalogPage";
 import { PagePost } from "./pages/PostPage/PostPage";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { CurrentAuthorContext } from './Context/currentAuthorContext';
 import { PostCreate } from "./pages/PostCreate/postCreate";
+
 
 
 export const App = () => {
@@ -43,14 +44,17 @@ function handlePostLike({_id, likes}) {
   })
 }
 const handleBtnCreate = () => {
-  api.setPostCreate()
-  .then(() => {
-    api.getPostList()
-    .then((newPostListAfterCreate) => {
-       setItems(newPostListAfterCreate)
-    })
-  })
+  <Link to={`/post`} className="create__post">
+  </Link>
 }
+  // api.setPostCreate()
+  // .then(() => {
+  //   api.getPostList()
+  //   .then((newPostListAfterCreate) => {
+  //      setItems(newPostListAfterCreate)
+  //   })
+  // })
+
 function handlePostDelete(_id) {
   let confirmDelete = confirm("Удалить пост?");
   if (confirmDelete) {
