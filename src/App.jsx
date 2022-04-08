@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
+import { Card } from "./components/Card";
 import { BreadComponent } from "./components/Breadcrumbs";
 import api from "./utils/Api";
 import './index.css';
@@ -11,13 +12,13 @@ import { PagePost } from "./pages/PostPage/PostPage";
 import { Link, Route, Routes } from "react-router-dom";
 import { CurrentAuthorContext } from './Context/currentAuthorContext';
 import { PostCreate } from "./pages/PostCreate/postCreate";
-
-
-
+import { Modal } from "./components/Modal/Modal";
 export const App = () => {
   const [items, setItems] = useState([]);
   const [currentAuthor, setCurrentAuthor] = useState({});
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
+  const [createPost, setCreatePost] = useState([]);
+  const [activePost, setActivePost] = useState(true);
    useEffect(() => {
     // api.getPostList()
     // .then(data => console.log(data))
@@ -33,6 +34,7 @@ export const App = () => {
       setCurrentAuthor(authorData)
        })
   }, [])
+ 
 function handlePostLike({_id, likes}) {
    const liked = likes.some(id => id === currentAuthor._id)
   api.changeLikePost(_id, liked)
@@ -43,10 +45,10 @@ function handlePostLike({_id, likes}) {
         setItems(newPostList);
   })
 }
-const handleBtnCreate = () => {
-  <Link to={`/post`} className="create__post">
-  </Link>
-}
+// const handleBtnCreate = () => {
+//   <Link to={`/post`} className="create__post">
+//   </Link>
+// }
   // api.setPostCreate()
   // .then(() => {
   //   api.getPostList()
@@ -88,7 +90,7 @@ function handleAuthorUpdate (authorUpdate) {
           handlePostLike={handlePostLike}
           handlePostDelete={handlePostDelete}
           onUpdateAuthor={handleAuthorUpdate}
-          handleBtnCreate={handleBtnCreate}
+          // handleBtnCreate={handleBtnCreate}
           />
         }/>
       <Route path="/post/:postID" 
@@ -100,9 +102,10 @@ function handleAuthorUpdate (authorUpdate) {
         handlePostDelete={handlePostDelete}
         />
       } />
-      <Route path="/post" element={<PostCreate/>}/>
+      <Route path="/post" element={<PostCreate /*addPost={addPost}*//>}/>
       <Route path="*" className="errorMessage" element={<h1>Ошибка 404: страница не найдена</h1>}/>
         </Routes>
+        <Modal active={activePost} setActive={setActivePost}/>
         <Footer />
     </CurrentAuthorContext.Provider>
   );

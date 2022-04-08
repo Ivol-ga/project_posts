@@ -53,6 +53,11 @@ module.exports = {
         type: "asset/resource",
       },
       {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
+      {
         test: /\.svg$/,
         use: ["@svgr/webpack", "url-loader"],
       },

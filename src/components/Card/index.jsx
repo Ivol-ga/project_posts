@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext, useState} from "react";
 import './styles.css';
 import { ReactComponent as Like } from './img/like.svg'
 import 'antd/dist/antd.css';
@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import 'dayjs/locale/ru';
 import { Link } from 'react-router-dom';
 import { CurrentAuthorContext } from './../../Context/currentAuthorContext';
+
 dayjs.locale('ru')
 
 export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, created_at, updated_at, author}) => {
@@ -14,6 +15,8 @@ export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, c
     const dataPostCreate = dayjs(created_at).format('dddd, MMMM DD.YYYY');
   const dataPostUpdate = dayjs(updated_at).format('dddd, MMMM DD.YYYY');
   const liked = likes.some(id => id === currentAuthor._id); 
+
+ 
   function handleLikeClick() {
     onPostLike({_id, likes});
   }
@@ -42,7 +45,12 @@ export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, c
         <div className="card__created">Создано: {dataPostCreate}</div>
         <div className="card__updated">Изменено: {dataPostUpdate}</div>
          </div>
-         <Button type="primary" className="post__delete" onClick={handlePostDelete}>Удалить</Button>
+         <div>{currentAuthor?.email==author?.email && (<Button type="primary" className="post__delete" onClick={handlePostDelete}>Удалить</Button>)}</div>
+         <div>{currentAuthor.email==author.email && (<Button type="primary" className="post__edit" onClick={()=>setActiveModal(true)}>Редактировать</Button>)}</div>
+     
+             
+
     </div>
+    
   );
 };

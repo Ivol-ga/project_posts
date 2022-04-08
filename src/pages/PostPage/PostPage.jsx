@@ -4,6 +4,7 @@ import api from "../../utils/Api";
 import { Post } from "../../components/Post/post";
 import { useParams } from "react-router-dom";
 import { useApi } from '../../hooks/useApi';
+
 // import Spinner from './../../Spinner/index';
 
 export const PagePost = ({handlePostLike, cards}) => {
@@ -16,12 +17,13 @@ export const PagePost = ({handlePostLike, cards}) => {
   }, [postID, cards])
 
   const {dataPost: post, isLoadingPost, error} = useApi(postParam);
+
   
   return (
     <>
   
       {post && <Post {...post}  onPostLike={handlePostLike}/>}
-    
+  
     </>
   );
 };

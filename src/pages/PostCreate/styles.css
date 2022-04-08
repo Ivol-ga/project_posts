@@ -1,0 +1,40 @@
+.button__back {
+    margin: 15px;
+    color: #41419e;
+    font-size: 18px;
+    }
+.postCreate {
+    color: #41419e;
+}
+label {
+    margin-left: 10px;
+   }
+input {
+    padding: 5px;
+    display: block;
+    margin-left: 10px;
+    color:#41419e;
+    border-color: #41419e;
+    width: 100%;
+    
+}
+
+.postCreate__area_title {
+     display: flex;
+     justify-content: center;
+}
+.postCreate {
+    margin: 10px;
+    max-width: 400px;
+}
+button {
+    padding: 5px;
+    margin: 5px;
+}
+.postCreate__error {
+    color: rgb(145, 5, 5);
+    text-align: right;
+}
+.postCreate__description {
+  font-size: 14px;
+}

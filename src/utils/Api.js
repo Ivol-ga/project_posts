@@ -33,14 +33,14 @@ class Api {
     body: JSON.stringify(authorData)
   }).then(onRespPosts)  
 }
-setPostCreate() {
+setPostCreate(data) {
   return fetch(`${this._baseUrl}/posts`, {
     method: "POST",
   headers: {
     authorization: this._token,
     "Content-type": "application/json"
   },
-  body: JSON.stringify()
+  body: JSON.stringify(data)
 }).then(onRespPosts)  
 }
 
