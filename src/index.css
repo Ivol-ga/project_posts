@@ -6,7 +6,10 @@
 * {
     box-sizing: inherit;
 }
-
+#root {
+    position: relative;
+    z-index: 1;
+}
 html {
     box-sizing: border-box;
 }
@@ -50,4 +53,9 @@ img {
 }
 .errorMessage {
   margin-left: 20px;
+}
+button {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
 }

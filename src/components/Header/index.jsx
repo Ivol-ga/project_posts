@@ -10,6 +10,7 @@ export const Header = () => {
         <header className="posts__header">
             <div className="posts__header_container">
                <Logo/>
+               
                 <Btn/> 
          </div>
 

@@ -17,6 +17,11 @@ export const Post = ({onPostLike, image, onPostDelete, _id, likes, title, text, 
   const CurrentAuthor = useContext(CurrentAuthorContext);
   const liked = likes && likes.some(id => id === CurrentAuthor?._id); 
   const navigate = useNavigate();
+
+  // function getIdPostForm (_id) {
+  // let idPost = {_id};
+  //  console.log(idPost);
+  // }
   function handleLikeClick() {
            onPostLike({_id, likes});
   }
@@ -43,7 +48,10 @@ export const Post = ({onPostLike, image, onPostDelete, _id, likes, title, text, 
             </button>
           </div>
           <div className="user">
-          <img src={image} alt="image" className="member__image" />
+            <div className="member__picture">
+            <img src={image} alt="image" className="member__image" />
+            </div>
+          
           <div className="member__avatar">
              <img src={author?.avatar} alt="avatar" className="member__avatar_card" />
              <span>{author?.name}</span>

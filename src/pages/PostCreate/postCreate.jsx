@@ -1,12 +1,10 @@
 import React from "react";
 import './styles.css';
 import api from "../../utils/Api";
-// import 'antd/dist/antd.css';
-// import { Button } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-export function PostCreate() {
+export function PostCreate(setItems) {
   const navigate = useNavigate();
   // const[memberInfo, setMemberInfo] = useState({
   //     title: "",
@@ -40,15 +38,14 @@ export function PostCreate() {
   //     })
   // }
   function onPostSubmit(postInfo) {
-    let [tagsArray] = postInfo.tags.split(",");
-    const newPostListAfterCreate = {
+    let tagsArray = postInfo.tags.split(",") || [];
+      const newPostListAfterCreate = {
       title: postInfo.title,
       image: postInfo.image,
       text: postInfo.text,
-      tags: postInfo.tags ? Array.from(tagsArray) : []
+      tags: tagsArray
     }
-    console.log(postInfo);
-      api.setPostCreate(postInfo)
+        api.setPostCreate(newPostListAfterCreate)
       .then(() => {
         api.getPostList()
         .then((newPostListAfterCreate) => {
@@ -68,6 +65,7 @@ export function PostCreate() {
           <div className="postCreate__area_title">
             <h2>Страница создания поста</h2>
           </div>
+          <div className="postCreate__section">
           <label className="postCreate__title">
             Заголовок поста*:
             <input
@@ -123,6 +121,7 @@ export function PostCreate() {
             Добавьте тэги поста:
             <input type="text" {...register("tags")} placeholder="Тэги поста" />
           </label>
+          </div>
           <button className="post__create">
             Создать
           </button>

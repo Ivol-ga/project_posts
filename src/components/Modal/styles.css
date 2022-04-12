@@ -1,30 +1,72 @@
 .modalPost {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+       /* width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.3);
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 5; 
-    pointer-events: none;
-    /* opacity: 0; */
+    z-index: 10; 
+    /* pointer-events: none; */
+     /* opacity: 0;
+     display: none;
     transition: opacity 0.3s;
+    visibility: hidden;  */
+    /* pointer-events: none; */
+    opacity: 0;
+   visibility: hidden;
+      position: relative;
+   top: 0;
+   left: 0;
+     background-color: rgba(0, 0, 0, .5);
+   z-index: 1;
+   transition: .3s all;
+   pointer-events: none;
+   width: 100vw;
+    height: 100vh;
+    display: none;
+
 }
+
  .modalPost__edit {
+    width: 100%;
+    height: 100%;
     padding: 10px;
     border-radius: 5px;
     background-color: hsl(270, 36%, 96%);
-    height: 200px;
-    width: 200px;
     border: inset;
     border-color: var(--main-color);
-    transform: scale(1);
+    transform: scale(0.5);
+    transition: transform 0.2s;
 }
 .modalPost-active {
-    opacity: 1;
+    /* opacity: 1;
     pointer-events: all;
+       height: 100%;
+    z-index: 15; 
+      position: relative;
+    ointer-events: all; */
+    opacity: 1;
+   /* visibility: hidden; */
+   background-color: rgba(0,0,0,0.3);
+   overflow: hidden;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   max-width: 500px;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   z-index: 100;
+   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
+   text-align: center;
+   padding: 10px;
+   border-radius: 3px;
+   /* background-color: #fff; */
+   transition: 0.3s all;
+   pointer-events: all;
+}
+.modalPost-active .modalPost__edit {
     transform: scale(1);
-}  
+}

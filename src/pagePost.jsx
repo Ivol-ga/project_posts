@@ -40,20 +40,18 @@ function handlePostLike({_id, likes}) {
         setPost(newPost);
   })
 }
-function handlePostDelete(_id) {
-  // console.log(currentAuthor);
-  let confirmDelete = confirm("Удалить пост?");
-  if (confirmDelete) {
-    api.deletePost(_id).then(() => {
-      api.getPostList().then((newPostListAfterDelete) => {
-        setItems(newPostListAfterDelete);
-      });
-    });
-  }
-  if (status === "403") {
-    alert("Запрещено удалять чужой пост")
-  }
-}
+// function handlePostDelete(_id) {
+//   console.log(_id);
+//   let confirmDelete = confirm("Удалить пост?");
+//   if (confirmDelete) {
+//     api.deletePost(_id).then(() => {
+//       api.getPostList().then((newPostListAfterDelete) => {
+//         setItems(newPostListAfterDelete);
+//       });
+//     });
+//   }
+// }
+
   return (
     <>
       <Header/>

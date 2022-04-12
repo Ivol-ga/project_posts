@@ -55,12 +55,12 @@ export const Main = ({onUpdateAuthor, handleBtnCreate}) => {
       </Link>
 
       <div>
-        <BtnBackNext as="a" href="https://react-learning.ru/">
+        {/* <BtnBackNext as="a" href="https://react-learning.ru/">
           Home
         </BtnBackNext>
         <BtnBackNext primary as="a" href="https://react-learning.ru/posts">
           Posts
-        </BtnBackNext>
+        </BtnBackNext> */}
       </div>
     </main>
   );

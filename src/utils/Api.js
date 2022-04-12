@@ -43,6 +43,17 @@ setPostCreate(data) {
   body: JSON.stringify(data)
 }).then(onRespPosts)  
 }
+setPostEdit(_id, editPost) {
+  console.log(_id);
+  return fetch(`${this._baseUrl}/posts/${_id}`, {
+    method: "PATCH",
+  headers: {
+    authorization: this._token,
+    "Content-type": "application/json"
+  },
+  body: JSON.stringify(editPost)
+}).then(onRespPosts)  
+}
 
   changeLikePost(likeId, isLike) {
     return fetch(`${this._baseUrl}/posts/likes/${likeId}`, {
@@ -53,6 +64,7 @@ setPostCreate(data) {
     }).then(onRespPosts)  
   }
   deletePost(_id) {
+    console.log(_id);
     return fetch(`${this._baseUrl}/posts/${_id}`, {
       method:  "DELETE",
       headers: {

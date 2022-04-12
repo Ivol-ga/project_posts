@@ -13,12 +13,15 @@ import { Link, Route, Routes } from "react-router-dom";
 import { CurrentAuthorContext } from './Context/currentAuthorContext';
 import { PostCreate } from "./pages/PostCreate/postCreate";
 import { Modal } from "./components/Modal/Modal";
+import { EditPost } from './components/EditPost/EditPost';
+
 export const App = () => {
   const [items, setItems] = useState([]);
   const [currentAuthor, setCurrentAuthor] = useState({});
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
   const [createPost, setCreatePost] = useState([]);
-  const [activePost, setActivePost] = useState(true);
+  const [activePost, setActivePost] = useState(false);
+ 
    useEffect(() => {
     // api.getPostList()
     // .then(data => console.log(data))
@@ -45,6 +48,9 @@ function handlePostLike({_id, likes}) {
         setItems(newPostList);
   })
 }
+function getIdPostForForm (_id) {
+  let id = _id
+  }
 // const handleBtnCreate = () => {
 //   <Link to={`/post`} className="create__post">
 //   </Link>
@@ -78,10 +84,17 @@ function handleAuthorUpdate (authorUpdate) {
      .then((newAuthorData) => {setCurrentAuthor(newAuthorData)
      })
 }
+function handlePostEditModal({setActive}) {
+  setActivePost(true);    
+  }
+ 
   return (
     <CurrentAuthorContext.Provider value={currentAuthor}>
       <Header/>
       <BreadComponent/>
+      <Modal active={activePost} setActive={setActivePost} getIdPostForForm={getIdPostForForm}>
+        <EditPost/>
+      </Modal>
       <Routes>
         <Route path="/" 
         element={isLoadingPosts ? <Spinner/> : <PageCatalog
@@ -90,6 +103,8 @@ function handleAuthorUpdate (authorUpdate) {
           handlePostLike={handlePostLike}
           handlePostDelete={handlePostDelete}
           onUpdateAuthor={handleAuthorUpdate}
+          handlePostEditModal={handlePostEditModal}
+          active={activePost} setActive={setActivePost} 
           // handleBtnCreate={handleBtnCreate}
           />
         }/>
@@ -100,12 +115,14 @@ function handleAuthorUpdate (authorUpdate) {
         currentAuthor={currentAuthor}
         handlePostLike={handlePostLike}
         handlePostDelete={handlePostDelete}
+        handlePostEditModal={handlePostEditModal}
+        // getIdPostForm={getIdPostForm}
         />
       } />
       <Route path="/post" element={<PostCreate /*addPost={addPost}*//>}/>
       <Route path="*" className="errorMessage" element={<h1>Ошибка 404: страница не найдена</h1>}/>
         </Routes>
-        <Modal active={activePost} setActive={setActivePost}/>
+        
         <Footer />
     </CurrentAuthorContext.Provider>
   );

@@ -6,8 +6,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .footer_container p {
     font-size: 18px;
+}
+.contacts, .media__icon, .contacts__mail, .contacts__tel {
+    margin: 5px;
+}
+.contacts__action {
+    display: flex;
+    justify-content:space-around;
+    align-items:flex-start;
+}
+.contacts__tel, .contacts__mail {
+    color: rgb(95, 52, 214)
+}
+.contacts__title {
+    font-size: 18px;
+    font-family: "Nunito";
+    font-weight: 500;
+}
+.contacts{
+    font-size: 16px;
 }

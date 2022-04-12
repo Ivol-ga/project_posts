@@ -10,7 +10,7 @@ import { CurrentAuthorContext } from './../../Context/currentAuthorContext';
 
 dayjs.locale('ru')
 
-export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, created_at, updated_at, author}) => {
+export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, created_at, updated_at, author, onPostEdit}) => {
   const currentAuthor = useContext(CurrentAuthorContext);
     const dataPostCreate = dayjs(created_at).format('dddd, MMMM DD.YYYY');
   const dataPostUpdate = dayjs(updated_at).format('dddd, MMMM DD.YYYY');
@@ -23,6 +23,10 @@ export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, c
   const handlePostDelete = () => {
     onPostDelete(_id);
   }
+  const handlePostEditModal = () => {
+    onPostEdit(_id);
+  }
+   
   return (
     <div className="card">
          <div className="card__picture">
@@ -46,9 +50,9 @@ export const Card = ({onPostLike, onPostDelete, _id, likes, title, text, tags, c
         <div className="card__updated">Изменено: {dataPostUpdate}</div>
          </div>
          <div>{currentAuthor?.email==author?.email && (<Button type="primary" className="post__delete" onClick={handlePostDelete}>Удалить</Button>)}</div>
-         <div>{currentAuthor.email==author.email && (<Button type="primary" className="post__edit" onClick={()=>setActiveModal(true)}>Редактировать</Button>)}</div>
-     
-             
+         <div>{currentAuthor.email==author?.email && (
+         <Button type="primary" className="post__edit" onClick={handlePostEditModal}>
+           Редактировать</Button>)}</div>
 
     </div>
     
