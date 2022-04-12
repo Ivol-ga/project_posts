@@ -9,19 +9,27 @@ import Spinner from "./Spinner";
 import { message } from "antd";
 import { PageCatalog } from "./pages/CatalogPage/CatalogPage";
 import { PagePost } from "./pages/PostPage/PostPage";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { CurrentAuthorContext } from './Context/currentAuthorContext';
 import { PostCreate } from "./pages/PostCreate/postCreate";
 import { Modal } from "./components/Modal/Modal";
 import { EditPost } from './components/EditPost/EditPost';
+import PaginationMUI from './components/Pagination/index';
+
 
 export const App = () => {
+  const location = useLocation();
   const [items, setItems] = useState([]);
   const [currentAuthor, setCurrentAuthor] = useState({});
   const [isLoadingPosts, setIsLoadingPosts] = useState(false);
   const [createPost, setCreatePost] = useState([]);
   const [activePost, setActivePost] = useState(false);
- 
+
+  const [page, setPage] = useState(parseInt(location.search?.split("=")[1]) || 1);
+	const [pageLimit, setPageLimit] = useState(8);
+	const [pageQty, setPageQty] = useState(0);
+  const state = location.state;
+
    useEffect(() => {
     // api.getPostList()
     // .then(data => console.log(data))
@@ -30,13 +38,15 @@ export const App = () => {
     // api.getPostUser()
     // .then(data => console.log(data))
     // .catch(error => console.log(error))
-
-    Promise.all([api.getPostList(), api.getPostUser()])
+// const token = localStorage.getItem('jwt')
+// if(loggedIn)
+    Promise.all([api.getPostList(page, pageLimit), api.getPostUser()])
       .then(([postsData, authorData]) => {
-      setItems(postsData);
+      setItems(postsData.posts);
+      setPageQty(postsData.total);
       setCurrentAuthor(authorData)
        })
-  }, [])
+  }, [page, pageLimit])
  
 function handlePostLike({_id, likes}) {
    const liked = likes.some(id => id === currentAuthor._id)
@@ -70,7 +80,10 @@ function handlePostDelete(_id) {
     api.deletePost(_id).then(() => {
       api.getPostList()
       .then((newPostListAfterDelete) => {
-         setItems(newPostListAfterDelete)
+        setPage()
+        setPageLimit(8)
+         setItems(newPostListAfterDelete.posts)
+        
       })
     })
     .catch(err => console.log(err))
@@ -122,7 +135,7 @@ function handlePostEditModal({setActive}) {
       <Route path="/post" element={<PostCreate /*addPost={addPost}*//>}/>
       <Route path="*" className="errorMessage" element={<h1>Ошибка 404: страница не найдена</h1>}/>
         </Routes>
-        
+         <PaginationMUI page={page} pageQty={pageQty} pageLimit={pageLimit} setPage={setPage}/> 
         <Footer />
     </CurrentAuthorContext.Provider>
   );

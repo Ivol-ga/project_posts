@@ -1,10 +1,43 @@
 import React from "react";
 import 'antd/dist/antd.css';
 import './styles.css';
-import { Pagination } from 'antd';
+import {  Stack, Pagination, PaginationItem } from "@mui/material";
+import { Link } from 'react-router-dom';
 
-export const Pagination = () => {
-  return (<Pagination defaultCurrent={1} total={50} defaultPageSize/>, mountNode);    //?
+
+
+const PaginationMUI = ({page, pageQty, pageLimit, setPage}) => {
+
+  return (
+    <Stack
+    spacing={2}
+    sx={{
+      mb: 2,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+    >
+    <Pagination 
+    count={Math.ceil(pageQty/pageLimit)} 
+    page={page} 
+    onChange={(event,num) =>
+      setPage(num)
+    }
+    variant="outlined"
+    color="primary"
+    // renderItem={(item) => {
+    //   (
+    //     <PaginationItem
+    //     component={Link}
+    //     to={`?page=${item.page}`}
+    //     {...item}
+    //     />
+    //   )
+    // }}
+    />
+    </Stack>
+  );
 };
 
- 
+ export default PaginationMUI;

@@ -8,8 +8,15 @@ class Api {
     this._baseUrl = baseUrl;
     this._token = `Bearer ${token}`;
   }
-  getPostList() {
-    return fetch(`${this._baseUrl}/posts`, {
+  // getPostList() {
+  //   return fetch(`${this._baseUrl}/posts`, {
+  //     headers: {
+  //       authorization: this._token,
+  //     },
+  //   }).then(onRespPosts)  
+  // }
+  getPostList(page = 1, limit = 100, query ="") {
+    return fetch(`${this._baseUrl}/posts/paginate/?page=${page}&limit=${limit}&query=${query}`, {
       headers: {
         authorization: this._token,
       },
@@ -79,6 +86,8 @@ setPostEdit(_id, editPost) {
       },
     }).then(onRespPosts)  
   }
+
+
 }
  const userUrl = {
      baseUrl: "https://api.react-learning.ru",

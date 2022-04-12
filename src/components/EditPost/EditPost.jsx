@@ -4,7 +4,7 @@ import api from "../../utils/Api";
 import { useForm } from "react-hook-form";
 import { Post } from './../Post/post';
 
-export function EditPost(id, setItems, getIdPostForForm) {
+export function EditPost(id, setItems, setActivePost, getIdPostForForm) {
   console.log(id);
   const {register, handleSubmit, formState: { errors }} = useForm({
     mode: "onBlur"
@@ -24,6 +24,7 @@ export function EditPost(id, setItems, getIdPostForForm) {
            setItems(newPostListAfterEdit)
         })
       })
+      setActivePost(false);
   }
   return (
     <div>

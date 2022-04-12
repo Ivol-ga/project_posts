@@ -49,9 +49,11 @@ export function PostCreate(setItems) {
       .then(() => {
         api.getPostList()
         .then((newPostListAfterCreate) => {
+          handleBackClick();
            setItems(newPostListAfterCreate)
         })
       })
+      
   }
   return (
     <div>
