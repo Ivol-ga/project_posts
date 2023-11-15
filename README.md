@@ -1,4 +1,4 @@
-# project_posts
+# project_posts on React JS
 
 
 ![posts page](https://github.com/Ivol-ga/project_posts/blob/main/1.JPG "Posts")
